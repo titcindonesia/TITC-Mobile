@@ -36,29 +36,26 @@ Website target telah dianalisis struktur DOM, CSS, dan perilakunya:
 
 ---
 
-## 3. Konfigurasi & Modifikasi Source Code
+## 3. Fitur-Fitur Aplikasi Android Lengkap
 
-### A. Izin Akses Internet (`AndroidManifest.xml`)
-Menambahkan permission jaringan agar WebView dapat memuat data dan aset dari server TITC:
-```xml
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-```
+### A. Animasi Splash Screen Full Screen Navy Blue (100% Presisi)
+- **Kode Warna Tepat**: `#092056` (RGB: 9, 32, 86) diekstrak langsung dari pixel background logo TITC.
+- **Tampilan Full Layar**: Seluruh margin putih telah dihilangkan dan diganti dengan background `#092056` sehingga saat aplikasi dibuka, layar langsung tertutup warna biru navy pekat secara menyatu (*seamless*).
+- **Efek Masuk (Entrance)**: Animasi *Fade In* + *Zoom In* halus (durasi 800ms).
+- **Efek Keluar (Transition to App)**: Transisi *Smooth Fade Out* (durasi 450ms) setelah 2.2 detik untuk langsung menampilkan konten web yang telah dimuat di latar belakang.
 
-### B. Controller WebView Terprogram (`MainActivity.kt`)
-Mengimplementasikan arsitektur WebView modern dengan fitur:
-1. **Immersive Edge-to-Edge Fullscreen**:
-   - Memanfaatkan `WindowCompat.setDecorFitsSystemWindows` dan `WindowInsetsControllerCompat` untuk menyembunyikan status bar bawaan HP, memberikan pengalaman aplikasi native yang utuh.
-2. **Optimalisasi Web Settings**:
-   - `javaScriptEnabled = true`: Menjamin seluruh fitur interaktif (Swiper Carousel, popup modal, animasi) berfungsi lancar.
-   - `domStorageEnabled = true` & `databaseEnabled = true`: Menyimpan sesi login pengguna, preferensi, dan local storage.
-   - `mixedContentMode = MIXED_CONTENT_ALWAYS_ALLOW`: Mencegah pemblokiran konten mixed-mode.
-   - `LOAD_DEFAULT` cache mode: Cepat dan hemat data saat memuat ulang halaman.
-3. **Internal Navigation & Progress Indicator**:
-   - `WebViewClient` menangani navigasi antar-halaman internal (Home, Schedule, Courses, PrepTest, Login) tetap di dalam WebView tanpa terlempar ke browser luar.
-   - Horizontal progress bar untuk indikator visual ketika halaman sedang dimuat.
-4. **Hardware & Gesture Back Button Handler**:
-   - Menangani tombol *Back* fisik/gesture (`onBackPressedDispatcher.addCallback`) agar menavigasi riwayat halaman web (`webView.goBack()`) sebelum menutup aplikasi jika sudah berada di halaman awal.
+### B. Custom App Launcher Icon
+- Menggunakan aset custom `icons-layanan/ICON APP.png`.
+- Digenerate ke seluruh densitas resolusi Android (`mdpi`, `hdpi`, `xhdpi`, `xxhdpi`, `xxxhdpi`) dan Adaptive Icon (Android 8.0+).
+
+### C. Fitur Tarik ke Bawah untuk Refresh (Pull-to-Refresh)
+- Menggunakan `SwipeRefreshLayout` yang membungkus `WebView`.
+- Menjalankan `webView.reload()` saat layar ditarik ke bawah dengan proteksi scroll agar hanya aktif saat berada di posisi paling atas halaman.
+
+### D. Immersive Fullscreen & Izin Jaringan
+- Tampilan edge-to-edge fullscreen (tanpa status bar HP).
+- JavaScript & DOM storage aktif untuk interaktivitas dan penyimpanan sesi login.
+- Penanganan navigasi internal dan tombol *Back* fisik HP.
 
 ---
 
@@ -67,12 +64,12 @@ Mengimplementasikan arsitektur WebView modern dengan fitur:
   ```powershell
   .\gradlew assembleDebug
   ```
-- **Status Build**: `BUILD SUCCESSFUL in 1m 38s`.
+- **Status Build**: `BUILD SUCCESSFUL in 21s`.
 - **Lokasi File APK Debug**:
   ```
   d:\MAGANG\magang titc\clone web mock\app\build\outputs\apk\debug\app-debug.apk
   ```
-- **Ukuran APK**: ~11.9 MB (siap diinstal di perangkat Android / emulator).
+- **Ukuran APK**: ~12.1 MB (siap diinstal di perangkat Android / emulator).
 
 ---
 

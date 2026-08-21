@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.TITCGlobalEduka" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.TITCGlobalEduka" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">#092056</item>
+        <item name="android:statusBarColor">#092056</item>
+        <item name="android:navigationBarColor">#092056</item>
+    </style>
 </resources>
