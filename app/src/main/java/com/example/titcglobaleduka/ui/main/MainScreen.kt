@@ -20,9 +20,7 @@ fun MainScreen(
 ) {
   val state by viewModel.uiState.collectAsStateWithLifecycle()
   when (state) {
-    MainScreenUiState.Loading -> {
-      // Blank
-    }
+    MainScreenUiState.Loading -> Unit
     is MainScreenUiState.Success -> {
       MainScreen(data = (state as MainScreenUiState.Success).data, modifier = modifier)
     }
@@ -34,11 +32,11 @@ fun MainScreen(
 
 @Composable
 internal fun MainScreen(data: List<String>, modifier: Modifier = Modifier) {
-  Column(modifier) { data.forEach { Greeting(it) } }
+  Column(modifier) { data.forEach { DataItem(it) } }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun DataItem(name: String, modifier: Modifier = Modifier) {
   Text(text = "Hello $name!", modifier = modifier)
 }
 

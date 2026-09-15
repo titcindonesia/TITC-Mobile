@@ -16,12 +16,12 @@ class MainScreenViewModelTest {
   }
 
   @Test
-  fun uiState_onItemSaved_isDisplayed() = runTest {
-    val viewModel = MainScreenViewModel(FakeMyModelRepository())
+  fun uiState_whenDataIsEmitted_isAvailable() = runTest {
+    val viewModel = MainScreenViewModel(FakeDataRepository())
     assertEquals(viewModel.uiState.first(), MainScreenUiState.Loading)
   }
 }
 
-private class FakeMyModelRepository : DataRepository {
+private class FakeDataRepository : DataRepository {
   override val data: Flow<List<String>> = flow { emit(listOf("Sample")) }
 }
